@@ -1,11 +1,14 @@
 import React from "react";
+import BotCard from '/.BotCard'
 
-function BotCollection() {
-  // Your code here
+function BotCollection({bots}) {
+  
+  const allBots = bots.map(bot => <BotCard bot={bot}/>)
+  
   return (
     <div className="ui four column grid">
       <div className="row">
-        {/*...and here..*/}
+        {allBots}
         Collection of all bots
       </div>
     </div>
