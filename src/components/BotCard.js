@@ -9,21 +9,28 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotCard({ bot, addToArmy, handleDelete }) {
+function BotCard({ bot, renamedProp, addToArmy, key}) {
   
-  function handleClick() {
-    addToArmy(bot)
-  }
+  // function handleClick() {
+  //   addToArmy(bot)
+  // }
+
   function deleteClick() {
-    handleDelete(bot)
+    fetch(`http://localhost:8002/bots/${bot.id}`, {
+    method: 'DELETE'})
+    .then(res=>res.json())
+    .then(console.log("Deleted!"))
+    .then(()=>renamedProp(bot))
   }
+
+  
 
   return (
     <div className="ui column">
       <div
         className="ui card"
-        key={bot.id}
-        onClick={handleClick}>
+        key={key}
+        onClick={() => addToArmy(bot.id)}>
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
         </div>
